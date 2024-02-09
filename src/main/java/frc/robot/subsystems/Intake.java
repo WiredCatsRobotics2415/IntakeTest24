@@ -22,18 +22,24 @@ public class Intake extends SubsystemBase {
     public Command off() {
       return runOnce(
         () -> {
-      System.out.println("Off");
-       motor.set(0);
+      motor_off();
         });
     }
 
-    public Command on() {
-      return runOnce(
-        () -> {
-        System.out.println("On");
-        motor.set(1);
-        });
+    public void motor_in() {
+        System.out.println("in");
+        motor.set(-1);
     }
+
+    public void motor_off() {
+      System.out.println("off");
+      motor.set(0);
+  }
+
+  public void motor_out() {
+    System.out.println("out");
+    motor.set(1);
+}
 
     public static Intake getInstance() {
         if (instance == null) {
@@ -45,15 +51,14 @@ public class Intake extends SubsystemBase {
       public Command toggle() {
         return runOnce(
         () -> {
-      if (hasNote() == false) {
+          System.out.println("Run");
           if (state == true) {
-            off();
+            motor_off();
             state = false;
         } else {
-            on();
+            motor_in();
             state = true;
         }
-      }
       });
       }
         
@@ -69,7 +74,7 @@ public class Intake extends SubsystemBase {
       public Command intakeIn() {
         return runOnce(
         () -> {
-      motor.set(-0.5);
+      motor_out();
       });
       }
 }

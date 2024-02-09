@@ -53,11 +53,12 @@ public class RobotContainer {
         .onTrue(intake.off());
 
     new Trigger(intake::inShooter)
-        .whileTrue(intake.intakeIn());
+        .onTrue(intake.intakeIn())
+        .onFalse(intake.off());
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+    // Schedule `exampleMethodCommand` when the Xbox controller's 1 button is pressed,
     // cancelling on release.
-    m_driverController.b().onTrue(intake.toggle());
+    m_driverController.button(1).onTrue(intake.toggle());
   }
 
   /**
