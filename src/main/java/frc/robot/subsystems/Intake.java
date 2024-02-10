@@ -61,7 +61,24 @@ public class Intake extends SubsystemBase {
         }
       });
       }
+
+    public void RobotContainer() {
+        if (speed>0) {
+    
+            if (firstIRSensor.get()){
+                motor.set(0);
+            } else {
+                motor.set(speed)
+            }
+        } else {
+            if (secondIRSensor.get()) {
+                motor.set(0);
+            } else {
+                motor.set(speed);
+            }
+        }
         
+    }
 
       public boolean hasNote() {
           return topIR.get();
